@@ -1,11 +1,33 @@
 # elasticsearch_server-lxc
 Un petit serveur Elasticsearch qui tourne dans un container LXC avec un docker compose
 
-zf250806.1515
+zf250806.1528
 
 Manuel hyper simplifié pour l'înstant:
 
-docker compose up
+Pour démarrer:
+```
+docker compose up -d
+```
+
+Pour arrêter:
+
+```
+docker compose stop
+```
+
+Pour indexer:
+```
+cd /var/www/nextcloud
+sudo -u www-data php occ fulltextsearch:index
+```
+
+Pour effacer l'index:
+```
+cd /var/www/nextcloud
+sudo -u www-data php occ fulltextsearch:reset
+```
+
 
 
 
