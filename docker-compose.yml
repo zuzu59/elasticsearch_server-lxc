@@ -1,4 +1,4 @@
-#zf250806.1455
+#zf250806.1503
 # Sources: https://github.com/R0Wi/elasticsearch-nextcloud-docker
 #https://github.com/R0Wi/elasticsearch-nextcloud-docker/blob/062b66ab066d71d4d509c9e8faf21ce7957e621b/docker-compose.yml
 # https://github.com/wazuh/wazuh-docker/issues/903
@@ -6,8 +6,10 @@
 services:
   elasticsearch:
     # DOCKER_TAG will be provided by the .env-file
-    image: r0wi/elasticsearch-nextcloud-docker:${DOCKER_TAG}
-    env_file: .env
+#    image: r0wi/elasticsearch-nextcloud-docker:${DOCKER_TAG}
+#    image: r0wi/elasticsearch-nextcloud-docker:8.8.2
+    image: r0wi/elasticsearch-nextcloud-docker:master
+#    env_file: .env
     container_name: elasticsearch_nc
     restart: always
     environment:
