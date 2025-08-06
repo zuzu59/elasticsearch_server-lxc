@@ -1,0 +1,31 @@
+#zf250806.1455
+# Sources: https://github.com/R0Wi/elasticsearch-nextcloud-docker
+#https://github.com/R0Wi/elasticsearch-nextcloud-docker/blob/062b66ab066d71d4d509c9e8faf21ce7957e621b/docker-compose.yml
+# https://github.com/wazuh/wazuh-docker/issues/903
+
+services:
+  elasticsearch:
+    # DOCKER_TAG will be provided by the .env-file
+    image: r0wi/elasticsearch-nextcloud-docker:${DOCKER_TAG}
+    env_file: .env
+    container_name: elasticsearch_nc
+    restart: always
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+#    ulimits:
+#      memlock:
+#        soft: -1
+#        hard: -1
+    volumes:
+      # Use named volume because of permission problems
+      - elasticsearch_data:/usr/share/elasticsearch/data 
+    ports:
+      - 9200:9200
+
+volumes:
+  elasticsearch_data:
+
